@@ -1,13 +1,1 @@
-# Music Mood Mining
-
-This project aims to analyze music features and their moods.
-
-## Directory Structure
-- `data/` : Contains raw, processed, and warehouse data
-- `src/` : Application source code
-- `notebooks/` : Jupyter notebooks for exploration
-- `outputs/` : Generated figures and models
-- `reports/` : Generated reports
-
-## Setup
-Refer to `requirements.txt` for dependencies.
+# Swarlipi - Music Mood Mining India`n`nA data mining project that clusters songs by mood using audio features and maps listening patterns against India's major events — elections, IPL, COVID waves, and more.`n`n## Directory Structure`n- `data/` : Contains raw, processed, and warehouse data`n- `src/` : Application source code`n- `notebooks/` : Jupyter notebooks for exploration`n- `outputs/` : Generated figures and models`n- `reports/` : Generated reports`n`n## Setup`nRefer to `requirements.txt` for dependencies.
