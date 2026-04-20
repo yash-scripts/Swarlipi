@@ -23,7 +23,8 @@ def _run_script(script_relative_path, *entrypoints):
     raise AttributeError(
         f"No callable entrypoint found in {script_relative_path}. "
         f"Tried: {', '.join(entrypoints)}. "
-        f"Available callables: {', '.join(available_callables) if available_callables else 'none'}"
+        f"Available callables: {', '.join(available_callables) if available_callables else 'none'}. "
+        "Define one of the expected entrypoints or update the _run_script call."
     )
 
 
