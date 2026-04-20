@@ -1,0 +1,26 @@
+{
+    "clustering_metrics": {
+        "silhouette_score": 0.1633501724037708,
+        "davies_bouldin_index": 1.7272788287875986,
+        "calinski_harabasz_index": 1813.7019659825814,
+        "inertia": 2889.1077615177633,
+        "cluster_size_distribution": {
+            "1": 2839,
+            "3": 2785,
+            "0": 2441,
+            "2": 2385
+        },
+        "cluster_mood_distribution": {
+            "Calm": 6171,
+            "Melancholic": 2290,
+            "Happy": 1521,
+            "Energetic": 468
+        }
+    },
+    "association_rules_metrics": {
+        "status": "outputs/association_rules.csv is present in this revision."
+    },
+    "time_series_metrics": {
+        "error": "[Errno 2] No such file or directory: 'data/processed/national_mood_index.csv'"
+    }
+}

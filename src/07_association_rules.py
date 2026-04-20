@@ -13,19 +13,19 @@ def main():
     except FileNotFoundError:
         print("Required data files not found. Ensure 06_kmeans_clustering is run first.")
         # Fallback to create a skeleton to prevent crash if running blindly
-        df = pd.DataFrame({'week': [1,1,2,2], 'rank': [1,2,1,2], 'mood': ['Happy', 'Calm', 'Energetic', 'Happy']})
+        df = pd.DataFrame({'week_number': [1,1,2,2], 'rank': [1,2,1,2], 'mood': ['Happy', 'Calm', 'Energetic', 'Happy']})
         events = pd.DataFrame({'date': [], 'event_type': []})
 
     # Ensure necessary columns are present
-    if not all(col in df.columns for col in ['week', 'rank', 'mood']):
-        print("Missing required 'week', 'rank', or 'mood' columns. Check upstream processing.")
+    if not all(col in df.columns for col in ['week_number', 'rank', 'mood']):
+        print("Missing required 'week_number', 'rank', or 'mood' columns. Check upstream processing.")
         return
 
     # Filter Top 20 songs per week
     df_top20 = df[df['rank'] <= 20]
 
-    # Create transactions: each week's mood set (unique moods appearing)
-    transactions = df_top20.groupby('week')['mood'].unique().apply(list).tolist()
+    # Create transactions: each week_number's mood set (unique moods appearing)
+    transactions = df_top20.groupby('week_number')['mood'].unique().apply(list).tolist()
 
     if not transactions:
         print("No transactions to process.")
@@ -54,10 +54,10 @@ def main():
     
     # Task: Repeat separately per event_type to find crisis-specific vs celebration-specific patterns
     # (Leaving skeleton/commentary for event join if event timeline structure is unified)
-    if 'event_type' in events.columns and 'week' in events.columns:
-        merged = pd.merge(df_top20, events, on='week', how='inner')
+    if 'event_type' in events.columns and 'week_number' in events.columns:
+        merged = pd.merge(df_top20, events, on='week_number', how='inner')
         for ev_type in merged['event_type'].unique():
-            sub_trans = merged[merged['event_type'] == ev_type].groupby('week')['mood'].unique().apply(list).tolist()
+            sub_trans = merged[merged['event_type'] == ev_type].groupby('week_number')['mood'].unique().apply(list).tolist()
             if sub_trans:
                 sub_ary = te.fit(sub_trans).transform(sub_trans)
                 sub_df = pd.DataFrame(sub_ary, columns=te.columns_)

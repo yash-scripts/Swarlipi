@@ -18,7 +18,7 @@ def main():
     
     # Load processed data
     # Assuming 'merged_data.csv' exists, otherwise mock or gracefully exit
-    data_path = 'data/processed/merged_data.csv'
+    data_path = 'data/processed/cleaned_merged_data.csv'
     if os.path.exists(data_path):
         df = pd.read_csv(data_path)
     else:
