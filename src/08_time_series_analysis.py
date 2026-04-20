@@ -36,7 +36,7 @@ def main():
     if 'week_date' not in df.columns and 'week' in df.columns:
         df['week_date'] = df['week']
     if 'week_date' not in df.columns:
-        print("Missing week_date column. Check schema.")
+        print(f"Missing week_date/week column. Available columns: {list(df.columns)}")
         return
 
     weekly_mood = df.groupby('week_date').apply(calc_mood_index).reset_index(name='mood_index')

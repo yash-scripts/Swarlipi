@@ -17,8 +17,13 @@ def _run_script(script_relative_path, *entrypoints):
             candidate()
             return
 
+    available_callables = sorted(
+        name for name, value in module_globals.items() if callable(value) and not name.startswith("_")
+    )
     raise AttributeError(
-        f"No callable entrypoint found in {script_relative_path}. Tried: {', '.join(entrypoints)}"
+        f"No callable entrypoint found in {script_relative_path}. "
+        f"Tried: {', '.join(entrypoints)}. "
+        f"Available callables: {', '.join(available_callables) if available_callables else 'none'}"
     )
 
 
