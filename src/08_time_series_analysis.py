@@ -33,11 +33,11 @@ def main():
             return np.nan
         return np.average(group['mood_score'], weights=group['streams'])
 
-    weekly_mood = df.groupby('week').apply(calc_mood_index).reset_index(name='mood_index')
+    weekly_mood = df.groupby('week_date').apply(calc_mood_index).reset_index(name='mood_index')
     
     # Setup datetime index
-    weekly_mood['week'] = pd.to_datetime(weekly_mood['week'])
-    weekly_mood = weekly_mood.sort_values('week').set_index('week')
+    weekly_mood['week_date'] = pd.to_datetime(weekly_mood['week_date'])
+    weekly_mood = weekly_mood.sort_values('week_date').set_index('week_date')
     weekly_mood = weekly_mood.dropna()
 
     # Compute rolling averages (4-week, 12-week)

@@ -1,27 +1,54 @@
-import yaml
-import sys
+"""
+Main pipeline runner.
+PRN: YOUR_PRN_HERE
+"""
 import logging
+import importlib
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+collect_charts = importlib.import_module("src.01_collect_charts")
+fetch_audio_features = importlib.import_module("src.02_fetch_audio_features")
+preprocess = importlib.import_module("src.03_preprocess")
+build_warehouse = importlib.import_module("src.04_build_warehouse")
+olap_queries = importlib.import_module("src.05_olap_queries")
+kmeans_clustering = importlib.import_module("src.06_kmeans_clustering")
+association_rules = importlib.import_module("src.07_association_rules")
+time_series_analysis = importlib.import_module("src.08_time_series_analysis")
+evaluation = importlib.import_module("src.09_evaluation")
+visualizations = importlib.import_module("src.10_visualizations")
 
-def load_config(config_path="config.yaml"):
-    try:
-        with open(config_path, "r") as file:
-            config = yaml.safe_load(file)
-            logger.info("Configuration loaded successfully.")
-            return config
-    except Exception as e:
-        logger.error(f"Failed to load config file: {e}")
-        return None
-
-def main():
-    logger.info("Music Mood Mining initialized.")
-    config = load_config()
+def run_pipeline():
+    logging.info("STEP 1/10: Collecting chart data...")
+    collect_charts.run()
     
-    if config:
-        project_name = config.get("project", {}).get("name", "Unknown Project")
-        logger.info(f"Project Name: {project_name}")
+    logging.info("STEP 2/10: Fetching audio features...")
+    fetch_audio_features.run()
+    
+    logging.info("STEP 3/10: Preprocessing...")
+    preprocess.run()
+    
+    logging.info("STEP 4/10: Building warehouse...")
+    build_warehouse.run()
+    
+    logging.info("STEP 5/10: Running OLAP queries...")
+    olap_queries.run()
+    
+    logging.info("STEP 6/10: K-Means clustering...")
+    kmeans_clustering.run()
+    
+    logging.info("STEP 7/10: Association rules...")
+    association_rules.run()
+    
+    logging.info("STEP 8/10: Time series analysis...")
+    time_series_analysis.run()
+    
+    logging.info("STEP 9/10: Evaluation...")
+    evaluation.run()
+    
+    logging.info("STEP 10/10: Generating visualizations...")
+    visualizations.run()
+    
+    logging.info("✅ PIPELINE COMPLETE")
 
 if __name__ == "__main__":
-    main()
+    logging.basicConfig(level=logging.INFO)
+    run_pipeline()
