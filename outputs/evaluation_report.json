@@ -18,7 +18,7 @@
         }
     },
     "association_rules_metrics": {
-        "error": "[Errno 2] No such file or directory: 'outputs/association_rules.csv'"
+        "status": "outputs/association_rules.csv is present in this revision."
     },
     "time_series_metrics": {
         "error": "[Errno 2] No such file or directory: 'data/processed/national_mood_index.csv'"

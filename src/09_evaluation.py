@@ -96,8 +96,9 @@ def evaluate_time_series(report: dict):
     print("Evaluating Time Series...")
     try:
         ts = pd.read_csv('data/processed/national_mood_index.csv')
-        ts['week'] = pd.to_datetime(ts['week'])
-        ts.set_index('week', inplace=True)
+        time_col = 'week' if 'week' in ts.columns else 'week_date'
+        ts[time_col] = pd.to_datetime(ts[time_col])
+        ts.set_index(time_col, inplace=True)
 
         events = pd.read_csv('data/raw/india_event_timeline.csv')
         events['start_date'] = pd.to_datetime(events['start_date'])

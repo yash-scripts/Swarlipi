@@ -13,7 +13,7 @@ def main():
     except FileNotFoundError:
         print("Required data files not found. Ensure 06_kmeans_clustering is run first.")
         # Fallback to create a skeleton to prevent crash if running blindly
-        df = pd.DataFrame({'week': [1,1,2,2], 'rank': [1,2,1,2], 'mood': ['Happy', 'Calm', 'Energetic', 'Happy']})
+        df = pd.DataFrame({'week_number': [1,1,2,2], 'rank': [1,2,1,2], 'mood': ['Happy', 'Calm', 'Energetic', 'Happy']})
         events = pd.DataFrame({'date': [], 'event_type': []})
 
     # Ensure necessary columns are present

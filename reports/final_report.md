@@ -1,5 +1,4 @@
 # Capstone Final Report: Swarlipi Data Pipeline
-**Author:** Your PRN Here  
 **Date:** April 2026  
 
 ---

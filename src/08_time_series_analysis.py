@@ -13,7 +13,7 @@ def main():
         print("Warning: clustered_data.csv not found. Generating mock timeseries.")
         dates = pd.date_range('2023-01-01', periods=104, freq='W')
         df = pd.DataFrame({
-            'week': dates.repeat(50),
+            'week_date': dates.repeat(50),
             'streams': np.random.randint(1000, 100000, 5200),
             'valence': np.random.uniform(0.1, 0.9, 5200)
         })
@@ -32,6 +32,12 @@ def main():
         if total_streams == 0:
             return np.nan
         return np.average(group['mood_score'], weights=group['streams'])
+
+    if 'week_date' not in df.columns and 'week' in df.columns:
+        df['week_date'] = df['week']
+    if 'week_date' not in df.columns:
+        print("Missing week_date column. Check schema.")
+        return
 
     weekly_mood = df.groupby('week_date').apply(calc_mood_index).reset_index(name='mood_index')
     

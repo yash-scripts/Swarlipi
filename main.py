@@ -1,53 +1,60 @@
-"""
-Main pipeline runner.
-PRN: YOUR_PRN_HERE
-"""
-import logging
-import importlib
+"""Main pipeline runner."""
 
-collect_charts = importlib.import_module("src.01_collect_charts")
-fetch_audio_features = importlib.import_module("src.02_fetch_audio_features")
-preprocess = importlib.import_module("src.03_preprocess")
-build_warehouse = importlib.import_module("src.04_build_warehouse")
-olap_queries = importlib.import_module("src.05_olap_queries")
-kmeans_clustering = importlib.import_module("src.06_kmeans_clustering")
-association_rules = importlib.import_module("src.07_association_rules")
-time_series_analysis = importlib.import_module("src.08_time_series_analysis")
-evaluation = importlib.import_module("src.09_evaluation")
-visualizations = importlib.import_module("src.10_visualizations")
+import logging
+from pathlib import Path
+import runpy
+
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def _run_script(script_relative_path, *entrypoints):
+    script_path = BASE_DIR / script_relative_path
+    module_globals = runpy.run_path(str(script_path), run_name="__swarlipi_step__")
+
+    for entrypoint in entrypoints:
+        candidate = module_globals.get(entrypoint)
+        if callable(candidate):
+            candidate()
+            return
+
+    raise AttributeError(
+        f"No callable entrypoint found in {script_relative_path}. Tried: {', '.join(entrypoints)}"
+    )
+
 
 def run_pipeline():
     logging.info("STEP 1/10: Collecting chart data...")
-    collect_charts.run()
-    
+    _run_script("src/01_collect_charts.py", "run", "collect_charts", "main")
+
     logging.info("STEP 2/10: Fetching audio features...")
-    fetch_audio_features.run()
-    
+    _run_script("src/02_fetch_audio_features.py", "run", "fetch_audio_features", "main")
+
     logging.info("STEP 3/10: Preprocessing...")
-    preprocess.run()
-    
+    _run_script("src/03_preprocess.py", "run", "main")
+
     logging.info("STEP 4/10: Building warehouse...")
-    build_warehouse.run()
-    
+    _run_script("src/04_build_warehouse.py", "run", "main")
+
     logging.info("STEP 5/10: Running OLAP queries...")
-    olap_queries.run()
-    
+    _run_script("src/05_olap_queries.py", "run", "execute_queries", "main")
+
     logging.info("STEP 6/10: K-Means clustering...")
-    kmeans_clustering.run()
-    
+    _run_script("src/06_kmeans_clustering.py", "run", "main")
+
     logging.info("STEP 7/10: Association rules...")
-    association_rules.run()
-    
+    _run_script("src/07_association_rules.py", "run", "main")
+
     logging.info("STEP 8/10: Time series analysis...")
-    time_series_analysis.run()
-    
+    _run_script("src/08_time_series_analysis.py", "run", "main")
+
     logging.info("STEP 9/10: Evaluation...")
-    evaluation.run()
-    
+    _run_script("src/09_evaluation.py", "run", "main")
+
     logging.info("STEP 10/10: Generating visualizations...")
-    visualizations.run()
-    
-    logging.info("✅ PIPELINE COMPLETE")
+    _run_script("src/10_visualizations.py", "run", "main")
+
+    logging.info("PIPELINE COMPLETE")
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)

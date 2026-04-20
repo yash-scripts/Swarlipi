@@ -1,7 +1,7 @@
 # Swarlipi Data Pipeline
 
 ## Project Overview
-Swarlipi is an analytical data pipeline designed to analyze Spotify charts and audio features to understand the impact of socio-economic and cultural events on collective music-listening behavior in India. The project integrates API-based data extraction, PySpark/Pandas preprocessing, dimensional data warehousing using SQLite/SQLAlchemy, unsupervised machine learning (K-Means Clustering), and Apriori association rules to unearth trends in national music "mood".
+Swarlipi is an analytical data pipeline designed to analyze Spotify charts and audio features to understand the impact of socio-economic and cultural events on collective music-listening behavior in India. The project integrates API-based data extraction, pandas preprocessing, dimensional data warehousing using SQLite/SQLAlchemy, unsupervised machine learning (K-Means Clustering), and Apriori association rules to unearth trends in national music "mood".
 
 ## Installation Instructions
 1. Clone the repository to your local machine.
@@ -34,7 +34,7 @@ Swarlipi-main/
 ├── config.yaml             # Configuration constants and connection settings
 ├── requirements.txt        # Python dependencies
 ├── main.py                 # Pipeline Orchestrator
-├── data/                   # Data directory (ignored by source control)
+├── data/                   # Data directory (some subpaths/files ignored by source control)
 │   ├── raw/                # Raw input data (e.g., event timelines, audio features)
 │   └── processed/          # Cleaned & Merged dataset, mood indexes, and ML output
 ├── notebooks/              # Jupyter Notebooks for EDA
