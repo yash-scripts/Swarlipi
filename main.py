@@ -59,7 +59,7 @@ def run_pipeline():
     logging.info("STEP 10/10: Generating visualizations...")
     _run_script("src/10_visualizations.py", "run", "main")
 
-    logging.info("PIPELINE COMPLETE")
+    logging.info("✅ PIPELINE COMPLETE")
 
 
 if __name__ == "__main__":
