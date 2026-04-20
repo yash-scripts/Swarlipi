@@ -33,9 +33,11 @@ def main():
             return np.nan
         return np.average(group['mood_score'], weights=group['streams'])
 
-    if 'week_date' not in df.columns and 'week' in df.columns:
+    if 'week_date' in df.columns:
+        pass
+    elif 'week' in df.columns:
         df['week_date'] = df['week']
-    if 'week_date' not in df.columns:
+    else:
         print(
             f"Missing week_date/week column. Expected: week_date or week. "
             f"Available columns: {list(df.columns)}"
