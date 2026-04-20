@@ -1,0 +1,24 @@
+project:
+  name: "Music Mood Mining India"
+  prn: "YOUR_PRN_HERE"
+  author: "YOUR_NAME_HERE"
+
+spotify_api:
+  client_id: "YOUR_SPOTIFY_CLIENT_ID"
+  client_secret: "YOUR_SPOTIFY_CLIENT_SECRET"
+
+paths:
+  raw_data: "data/raw/"
+  processed_data: "data/processed/"
+  warehouse: "data/warehouse/music_warehouse.db"
+  figures: "outputs/figures/"
+  models: "outputs/models/"
+
+clustering:
+  n_clusters: 4
+  random_state: 42
+  features: ["valence", "energy", "danceability", "acousticness", "tempo"]
+
+apriori:
+  min_support: 0.1
+  min_confidence: 0.5
