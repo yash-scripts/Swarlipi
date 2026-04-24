@@ -53,8 +53,11 @@ def clean_data(df):
         tempo_99 = df['tempo'].quantile(0.99)
         df['tempo'] = np.where(df['tempo'] > tempo_99, tempo_99, df['tempo'])
     
-    # Cap streams outliers using IQR method
+    # Ensure streams is numeric, stripping commas if string
     if 'streams' in df.columns:
+        if df['streams'].dtype == object:
+            df['streams'] = df['streams'].astype(str).str.replace(',', '').astype(float).astype(int)
+            
         Q1 = df['streams'].quantile(0.25)
         Q3 = df['streams'].quantile(0.75)
         IQR = Q3 - Q1

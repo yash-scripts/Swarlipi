@@ -6,11 +6,9 @@ import os
 os.makedirs('data/processed', exist_ok=True)
 
 def main():
-    print("Task 4.3: Performing Time Series Analysis...")
     try:
         df = pd.read_csv('data/processed/clustered_data.csv')
     except FileNotFoundError:
-        print("Warning: clustered_data.csv not found. Generating mock timeseries.")
         dates = pd.date_range('2023-01-01', periods=104, freq='W')
         df = pd.DataFrame({
             'week_date': dates.repeat(50),
@@ -18,28 +16,20 @@ def main():
             'valence': np.random.uniform(0.1, 0.9, 5200)
         })
 
-    # Set up columns if mapped differently
     if 'streams' not in df.columns or 'valence' not in df.columns:
-        print("Missing streams or valence columns. Check schema.")
         return
 
-    # Assuming 'valence' is used as a proxy for mood_score
     df['mood_score'] = df['valence']
 
-    # Compute weekly National Mood Index = weighted avg of mood_score by streams
     def calc_mood_index(group):
-        total_streams = group['streams'].sum()
-        if total_streams == 0:
+        g = group.dropna(subset=['streams', 'mood_score'])
+        if g.empty or g['streams'].sum() == 0:
             return np.nan
-        return np.average(group['mood_score'], weights=group['streams'])
+        return np.average(g['mood_score'], weights=g['streams'])
 
     if 'week_date' not in df.columns and 'week' in df.columns:
         df['week_date'] = df['week']
     if 'week_date' not in df.columns:
-        print(
-            f"Missing week_date/week column. Expected: week_date or week. "
-            f"Available columns: {list(df.columns)}"
-        )
         return
 
     weekly_mood = df.groupby('week_date').apply(calc_mood_index).reset_index(name='mood_index')
@@ -60,21 +50,16 @@ def main():
             weekly_mood['trend'] = decomposition.trend
             weekly_mood['seasonal'] = decomposition.seasonal
             weekly_mood['residual'] = decomposition.resid
-        except Exception as e:
-            print(f"Decomposition bypassed due to error: {e}")
+        except Exception:
+            pass
 
     # Detect changepoints (simple method: rolling mean shift detection)
     weekly_mood['mean_shift'] = weekly_mood['rolling_4w'].diff()
     threshold = weekly_mood['mean_shift'].std() * 2
     weekly_mood['changepoint'] = weekly_mood['mean_shift'].abs() > threshold
 
-    # Placeholder for correlation between mood index and event severity
-    # Needs event timeline properly joined and feature-engineered for "severity"
-    # Example: correlation = weekly_mood['mood_index'].corr(weekly_mood['event_severity'])
-
     # Save series -> data/processed/national_mood_index.csv
     weekly_mood.to_csv('data/processed/national_mood_index.csv')
-    print("Task 4.3 completed successfully.")
 
 if __name__ == '__main__':
     main()

@@ -29,8 +29,9 @@ def get_data():
     try:
         df = pd.read_csv('data/processed/clustered_data.csv')
         ts = pd.read_csv('data/processed/national_mood_index.csv')
-        ts['week'] = pd.to_datetime(ts['week'])
-        ts.set_index('week', inplace=True)
+        date_col = 'week_date' if 'week_date' in ts.columns else 'week'
+        ts[date_col] = pd.to_datetime(ts[date_col])
+        ts.set_index(date_col, inplace=True)
         
         events = pd.read_csv('data/raw/india_event_timeline.csv')
         events['start_date'] = pd.to_datetime(events['start_date'])
@@ -196,20 +197,33 @@ def plot_rules_network(rules):
     print("Generating Association rules network...")
     G = nx.DiGraph()
     for _, row in rules.head(15).iterrows():
-        G.add_edge(str(row['antecedents']), str(row['consequents']), weight=row['lift'])
+        # Clean frozenset text for display
+        ant = str(row['antecedents']).replace("frozenset({", "").replace("})", "").replace("'", "")
+        con = str(row['consequents']).replace("frozenset({", "").replace("})", "").replace("'", "")
+        if ant and con:
+            G.add_edge(ant, con, weight=row['lift'])
         
-    fig, ax = plt.subplots(figsize=(12, 8))
-    pos = nx.spring_layout(G, seed=42)
-    nx.draw(G, pos, with_labels=True, node_color=sns.color_palette("Set2")[0], 
-            node_size=2500, edge_color='gray', font_size=9, ax=ax)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Transparent / Dark background styling
+    fig.patch.set_alpha(0.0)
+    ax.set_facecolor('none')
+    
+    pos = nx.spring_layout(G, seed=42, k=0.9)
+    # Vibrant nodes & solid edges so they stand out on dark/light
+    nx.draw(G, pos, with_labels=True, node_color='#4169E1', edgecolors='#FFFFFF', linewidths=2,
+            node_size=3500, edge_color='#B0C4DE', font_size=12, font_color='white', font_weight='bold', 
+            arrows=True, arrowsize=20, width=2.5, ax=ax)
     
     edge_labels = nx.get_edge_attributes(G, 'weight')
-    edge_labels = {k: f"{v:.1f}" for k, v in edge_labels.items()}
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8, ax=ax)
+    edge_labels = {k: f"Lift: {v:.2f}" for k, v in edge_labels.items()}
     
-    add_title(ax, "Association Rules Network (Lift)")
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=10, 
+                                 font_color='#1E90FF', bbox=dict(boxstyle="round,pad=0.3", alpha=0.9, facecolor='white', edgecolor='none'), ax=ax)
+    
+    plt.title(f"Association Rules Network (Lift) | PRN: {PRN}", color='#FFD700', pad=15, fontsize=14, fontweight='bold')
     plt.tight_layout()
-    plt.savefig('outputs/figures/rules_network.png')
+    plt.savefig('outputs/figures/rules_network.png', transparent=True, dpi=150)
     plt.close()
 
 def plot_before_after(ts, events):

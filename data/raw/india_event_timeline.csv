@@ -1,16 +1,10 @@
-event_name,start_date,end_date,event_type,severity
-COVID Wave 1 Lockdown,2020-03-24,2020-06-30,Crisis,5
-IPL 2020 (UAE),2020-09-19,2020-11-10,Sports,3
-COVID Wave 2,2021-04-01,2021-06-30,Crisis,5
-IPL 2021,2021-09-19,2021-10-15,Sports,3
-Diwali 2021,2021-11-01,2021-11-07,Celebration,4
-IPL 2022,2022-03-26,2022-05-29,Sports,4
-Diwali 2022,2022-10-22,2022-10-28,Celebration,4
-IPL 2023,2023-03-31,2023-05-28,Sports,4
-G20 Summit India,2023-09-08,2023-09-10,Political,3
-Cricket World Cup 2023,2023-10-05,2023-11-19,Sports,5
-Diwali 2023,2023-11-10,2023-11-16,Celebration,4
-Holi 2020,2020-03-09,2020-03-10,Celebration,3
-Holi 2021,2021-03-28,2021-03-29,Celebration,3
-Holi 2022,2022-03-18,2022-03-19,Celebration,3
-Holi 2023,2023-03-07,2023-03-08,Celebration,3
+event_name,event_type,start_date,end_date,severity
+COVID Wave 1,Pandemic,2020-03-24,2020-06-30,3
+Diwali 2020,Festival,2020-11-10,2020-11-20,1
+COVID Wave 2,Pandemic,2021-04-01,2021-06-30,3
+IPL 2021,Sports,2021-04-09,2021-10-15,1
+Diwali 2021,Festival,2021-11-01,2021-11-10,1
+IPL 2022,Sports,2022-03-26,2022-05-29,1
+Diwali 2022,Festival,2022-10-20,2022-10-30,1
+IPL 2023,Sports,2023-03-31,2023-05-29,1
+Diwali 2023,Festival,2023-11-05,2023-11-15,1

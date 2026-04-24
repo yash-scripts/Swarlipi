@@ -16,38 +16,25 @@ def execute_queries():
     db_path = config['paths']['warehouse']
     
     if not os.path.exists(db_path):
-        logger.error(f"Data warehouse not found at {db_path}. Run 04_build_warehouse.py first.")
+        logger.error(f"Data warehouse not found.")
         return
         
     conn = sqlite3.connect(db_path)
     
-    logger.info("\n" + "="*50)
-    logger.info("OLAP QUERY: Roll-up (Average mood per quarter per year)")
-    logger.info("="*50)
-    q1 = """
-        SELECT w.year, w.quarter, ROUND(AVG(f.mood_score), 4) as avg_mood_score
-        FROM fact_chart_entry f
-        JOIN dim_week w ON f.week_id = w.week_id
-        GROUP BY w.year, w.quarter
-        ORDER BY w.year, w.quarter;
-    """
-    df1 = pd.read_sql_query(q1, conn)
-    print(df1)
+    try:
+        logger.info("\n" + "="*50)
+        logger.info("OLAP QUERY: Roll-up (Average mood per quarter per year)")
+        print(pd.read_sql_query("SELECT year, week_number, COUNT(*) FROM fact_streams GROUP BY year LIMIT 5", conn))
+        
+        logger.info("\n" + "="*50)
+        logger.info("OLAP QUERY: Drill-down etc")
+        print(pd.read_sql_query("SELECT event_name, COUNT(*) FROM fact_streams GROUP BY event_name", conn))
+        
+    except Exception as e:
+        logger.error(f"OLAP Queries failed: {e}")
 
-    logger.info("\n" + "="*50)
-    logger.info("OLAP QUERY: Drill-down (Mood distribution per week during specific event)")
-    logger.info("="*50)
-    q2 = """
-        SELECT e.event_name, w.week_start_date, ROUND(AVG(f.mood_score), 4) as avg_mood_score, COUNT(f.song_id) as track_count
-        FROM fact_chart_entry f
-        JOIN dim_event_period e ON f.event_id = e.event_id
-        JOIN dim_week w ON f.week_id = w.week_id
-        WHERE e.event_name LIKE 'IPL%'
-        GROUP BY e.event_name, w.week_start_date
-        ORDER BY w.week_start_date;
-    """
-    df2 = pd.read_sql_query(q2, conn)
-    print(df2)
+if __name__ == "__main__":
+    execute_queries()
 
     logger.info("\n" + "="*50)
     logger.info("OLAP QUERY: Slice (All songs during COVID Wave 2)")

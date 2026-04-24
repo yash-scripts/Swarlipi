@@ -1,11 +1,11 @@
 project:
   name: "Music Mood Mining India"
-  prn: "YOUR_PRN_HERE"
-  author: "YOUR_NAME_HERE"
+  prn: "PASTE_YOUR_PRN"
+  author: "PASTE_YOUR_NAME"
 
 spotify_api:
-  client_id: "YOUR_SPOTIFY_CLIENT_ID"
-  client_secret: "YOUR_SPOTIFY_CLIENT_SECRET"
+  client_id: "PASTE_YOUR_CLIENT_ID"
+  client_secret: "PASTE_YOUR_CLIENT_SECRET"
 
 paths:
   raw_data: "data/raw/"

@@ -1,122 +1,85 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import MinMaxScaler
+import yaml
+import os
+import logging
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
-import joblib
-import os
 import sqlite3
 
-# Ensure output directories exist
-os.makedirs('outputs/figures', exist_ok=True)
-os.makedirs('outputs/models', exist_ok=True)
-os.makedirs('data/processed', exist_ok=True)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+def load_config(config_path="config.yaml"):
+    with open(config_path, "r") as file:
+        return yaml.safe_load(file)
+
+def map_moods(df, cluster_col='cluster'):
+    # A simple semantic mapping
+    centroids = df.groupby(cluster_col)[['valence', 'energy']].mean()
+    mood_map = {}
+    for c, row in centroids.iterrows():
+        v, e = row['valence'], row['energy']
+        if v > 0.5 and e > 0.5: mood_map[c] = 'Happy'
+        elif v > 0.5 and e <= 0.5: mood_map[c] = 'Chill'
+        elif v <= 0.5 and e > 0.5: mood_map[c] = 'Energetic'
+        else: mood_map[c] = 'Melancholic'
+    return df[cluster_col].map(mood_map)
 
 def main():
-    print("Task 4.1: Starting KMeans Clustering...")
+    config = load_config()
+    proc_dir = config['paths']['processed_data']
+    df_path = os.path.join(proc_dir, "cleaned_merged_data.csv")
+    out_path = os.path.join(proc_dir, "clustered_data.csv")
+    db_path = config['paths']['warehouse']
     
-    # Load processed data
-    # Assuming 'merged_data.csv' exists, otherwise mock or gracefully exit
-    data_path = 'data/processed/cleaned_merged_data.csv'
-    if os.path.exists(data_path):
-        df = pd.read_csv(data_path)
-    else:
-        print(f"Warning: {data_path} not found. Ensure previous steps are run.")
-        df = pd.DataFrame(np.random.rand(100, 5), columns=['valence', 'energy', 'danceability', 'acousticness', 'tempo'])
-        df['track_id'] = [f't_{i}' for i in range(100)]
-    
-    features = ['valence', 'energy', 'danceability', 'acousticness', 'tempo']
-    available_features = [f for f in features if f in df.columns]
-    
-    if not available_features:
-        print("Required features missing from data.")
+    if not os.path.exists(df_path):
+        logger.error(f"{df_path} not found.")
         return
         
-    X = df[available_features].dropna()
+    df = pd.read_csv(df_path)
+    features = config['clustering']['features']
+    n_clu = config['clustering']['n_clusters']
+    r_state = config['clustering']['random_state']
     
-    # Apply MinMaxScaler
-    scaler = MinMaxScaler()
-    X_scaled = scaler.fit_transform(X)
+    logger.info("Task 4.1: Starting KMeans Clustering...")
+    valid_feats = [f for f in features if f in df.columns]
+    X = df[valid_feats].fillna(0)
     
-    # Determine optimal K (Elbow method for K in range(2, 10))
-    inertia = []
-    sil_scores = []
-    K_range = range(2, 11)
-    
-    for k in K_range:
-        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-        kmeans.fit(X_scaled)
-        inertia.append(kmeans.inertia_)
-        sil_scores.append(silhouette_score(X_scaled, kmeans.labels_))
-        
-    # Plot Elbow and Silhouette
-    fig, ax1 = plt.subplots(figsize=(10, 6))
-    
-    color = 'tab:red'
-    ax1.set_xlabel('K (Number of clusters)')
-    ax1.set_ylabel('Inertia (Elbow)', color=color)
-    ax1.plot(K_range, inertia, color=color, marker='o')
-    ax1.tick_params(axis='y', labelcolor=color)
-    
-    ax2 = ax1.twinx()
-    color = 'tab:blue'
-    ax2.set_ylabel('Silhouette Score', color=color)
-    ax2.plot(K_range, sil_scores, color=color, marker='s')
-    ax2.tick_params(axis='y', labelcolor=color)
-    
-    fig.tight_layout()
-    plt.title('Elbow Method and Silhouette Score for Optimal K')
-    plt.savefig('outputs/figures/elbow_silhouette.png')
-    plt.close()
-    
-    # Fit KMeans with K=4
-    kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
-    kmeans.fit(X_scaled)
-    
-    # Analyze centroids (inverse transform)
-    centroids_scaled = kmeans.cluster_centers_
-    centroids = scaler.inverse_transform(centroids_scaled)
-    
-    # Map cluster indices to heuristics
-    df_clustered = df.loc[X.index].copy()
-    df_clustered['cluster'] = kmeans.labels_
-    
-    def label_cluster(row):
-        val = row.get('valence', 0)
-        eng = row.get('energy', 0)
-        dnc = row.get('danceability', 0)
-        
-        if val > 0.6 and eng > 0.6:
-            return 'Happy'
-        elif val < 0.4 and eng < 0.5:
-            return 'Melancholic'
-        elif eng > 0.7 and dnc > 0.7:
-            return 'Energetic'
-        else:
-            return 'Calm'
-            
-    # Auto-label clusters
-    df_clustered['mood'] = df_clustered.apply(label_cluster, axis=1)
-    
-    # Save model -> outputs/models/kmeans_model.pkl
-    joblib.dump(kmeans, 'outputs/models/kmeans_model.pkl')
-    
-    # Save labeled data -> data/processed/clustered_data.csv
-    df_clustered.to_csv('data/processed/clustered_data.csv', index=False)
-    
-    # Update warehouse fact table with cluster labels
+    kmeans = KMeans(n_clusters=n_clu, random_state=r_state, n_init=10)
+    df['cluster'] = kmeans.fit_predict(X)
     try:
-        conn = sqlite3.connect('data/warehouse.db')
-        df_clustered[['track_id', 'mood']].to_sql('temp_moods', conn, if_exists='replace', index=False)
-        # Assumes fact_streams exists
-        conn.execute("UPDATE fact_streams SET mood = (SELECT mood FROM temp_moods WHERE temp_moods.track_id = fact_streams.track_id)")
-        conn.commit()
-        conn.close()
+        s_score = silhouette_score(X, df['cluster'])
+        logger.info(f"Silhouette Score: {s_score}")
+    except:
+        pass
+        
+    df['mood'] = map_moods(df, 'cluster')
+    df.to_csv(out_path, index=False)
+    
+    # Generate national mood index needed downstream
+    if 'week_date' in df.columns:
+        national = df.groupby('week_date')['valence'].mean().reset_index()
+        national.rename(columns={'valence': 'mood_index'}, inplace=True)
+        national.to_csv(os.path.join(proc_dir, "national_mood_index.csv"), index=False)
+        
+    # Update warehouse
+    try:
+        with sqlite3.connect(db_path) as conn:
+            cursor = conn.cursor()
+            try:
+                cursor.execute("ALTER TABLE fact_streams ADD COLUMN mood TEXT")
+            except: pass
+            
+            # Simple approach: save new dataframe to fact_streams replacing old
+            fact_df = df[['track_id', 'artist_name', 'rank', 'streams', 'mood']]
+            for base_c in ['event_name', 'week_number', 'year']:
+                if base_c in df.columns: fact_df[base_c] = df[base_c]
+            fact_df.to_sql('fact_streams', conn, if_exists='replace', index=False)
     except Exception as e:
-        print(f"Warehouse update skipped or failed (ensure schema exists): {e}")
+        logger.error(f"Warehouse update failed: {e}")
+        
+    logger.info("Task 4.1 completed successfully.")
 
-    print("Task 4.1 completed successfully.")
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

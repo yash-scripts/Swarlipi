@@ -1,26 +1,187 @@
 {
     "clustering_metrics": {
-        "silhouette_score": 0.1633501724037708,
-        "davies_bouldin_index": 1.7272788287875986,
-        "calinski_harabasz_index": 1813.7019659825814,
-        "inertia": 2889.1077615177633,
+        "silhouette_score": 0.1605146474991163,
+        "davies_bouldin_index": 1.7491803118339073,
+        "calinski_harabasz_index": 28273.800919707857,
+        "inertia": 47653.056750153155,
         "cluster_size_distribution": {
-            "1": 2839,
-            "3": 2785,
-            "0": 2441,
-            "2": 2385
+            "0": 45150,
+            "1": 41743,
+            "2": 41508,
+            "3": 41255
         },
         "cluster_mood_distribution": {
-            "Calm": 6171,
-            "Melancholic": 2290,
-            "Happy": 1521,
-            "Energetic": 468
+            "Calm": 98078,
+            "Melancholic": 35429,
+            "Happy": 27775,
+            "Energetic": 8374
         }
     },
     "association_rules_metrics": {
-        "status": "outputs/association_rules.csv is present in this revision."
+        "top_10_by_lift": [
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Calm'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Energetic'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Happy'})",
+                "consequents": "frozenset({'Calm'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Happy'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Melancholic'})",
+                "consequents": "frozenset({'Calm'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Melancholic'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Happy'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Happy'})",
+                "consequents": "frozenset({'Energetic'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Melancholic'})",
+                "lift": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Melancholic'})",
+                "consequents": "frozenset({'Energetic'})",
+                "lift": 1.0
+            }
+        ],
+        "top_10_by_confidence": [
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Calm'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Energetic'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Happy'})",
+                "consequents": "frozenset({'Calm'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Happy'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Melancholic'})",
+                "consequents": "frozenset({'Calm'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Melancholic'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Happy'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Happy'})",
+                "consequents": "frozenset({'Energetic'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Melancholic'})",
+                "confidence": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Melancholic'})",
+                "consequents": "frozenset({'Energetic'})",
+                "confidence": 1.0
+            }
+        ],
+        "top_10_by_support": [
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Calm'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Energetic'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Happy'})",
+                "consequents": "frozenset({'Calm'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Happy'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Melancholic'})",
+                "consequents": "frozenset({'Calm'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Calm'})",
+                "consequents": "frozenset({'Melancholic'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Happy'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Happy'})",
+                "consequents": "frozenset({'Energetic'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Energetic'})",
+                "consequents": "frozenset({'Melancholic'})",
+                "support": 1.0
+            },
+            {
+                "antecedents": "frozenset({'Melancholic'})",
+                "consequents": "frozenset({'Energetic'})",
+                "support": 1.0
+            }
+        ],
+        "coverage_analysis": {
+            "mean_antecedent_support": 1.0,
+            "mean_consequent_support": 1.0
+        }
     },
     "time_series_metrics": {
-        "error": "[Errno 2] No such file or directory: 'data/processed/national_mood_index.csv'"
+        "pre_post_paired_t_test": [],
+        "event_wise_mood_shift": [],
+        "correlation_severity_mood_dip": NaN
     }
 }

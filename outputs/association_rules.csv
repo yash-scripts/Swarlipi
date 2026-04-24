@@ -1,51 +1,51 @@
 antecedents,consequents,antecedent support,consequent support,support,confidence,lift,representativity,leverage,conviction,zhangs_metric,jaccard,certainty,kulczynski
-frozenset({'Calm'}),frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),frozenset({'Calm'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
+frozenset({'Energetic'}),frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Calm'}),frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Happy'}),frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Calm'}),frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Melancholic'}),frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Calm'}),frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
-frozenset({'Happy'}),frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),frozenset({'Happy'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Melancholic'}),frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),frozenset({'Melancholic'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
+frozenset({'Energetic'}),frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Happy'}),frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Energetic'}),frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Melancholic'}),frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Happy'}),frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Melancholic'}),frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
-"frozenset({'Happy', 'Calm'})",frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Energetic', 'Calm'})",frozenset({'Happy'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Energetic'})",frozenset({'Calm'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Calm'}),"frozenset({'Happy', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Happy'}),"frozenset({'Energetic', 'Calm'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),"frozenset({'Happy', 'Calm'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Melancholic', 'Calm'})",frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Energetic', 'Calm'})",frozenset({'Melancholic'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Melancholic', 'Energetic'})",frozenset({'Calm'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Calm'}),"frozenset({'Melancholic', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Melancholic'}),"frozenset({'Energetic', 'Calm'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),"frozenset({'Melancholic', 'Calm'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Melancholic'})",frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Calm'})",frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Happy'})",frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Happy', 'Calm'})",frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Energetic'}),"frozenset({'Happy', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Calm'}),"frozenset({'Energetic', 'Happy'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Happy'}),"frozenset({'Energetic', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Calm'})",frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Melancholic'})",frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Melancholic', 'Calm'})",frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Energetic'}),"frozenset({'Melancholic', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Calm'}),"frozenset({'Energetic', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Melancholic'}),"frozenset({'Energetic', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 "frozenset({'Happy', 'Calm'})",frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Happy', 'Melancholic'})",frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 "frozenset({'Melancholic', 'Calm'})",frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Happy'}),"frozenset({'Melancholic', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
-frozenset({'Melancholic'}),"frozenset({'Happy', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
 frozenset({'Calm'}),"frozenset({'Happy', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
-"frozenset({'Happy', 'Melancholic'})",frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Energetic'})",frozenset({'Melancholic'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Melancholic', 'Energetic'})",frozenset({'Happy'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Happy'}),"frozenset({'Melancholic', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Melancholic'}),"frozenset({'Happy', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),"frozenset({'Happy', 'Melancholic'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Melancholic', 'Calm'})",frozenset({'Energetic'}),1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Energetic', 'Happy', 'Calm'})",frozenset({'Melancholic'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Energetic', 'Melancholic', 'Calm'})",frozenset({'Happy'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Melancholic', 'Energetic'})",frozenset({'Calm'}),0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Calm'})","frozenset({'Melancholic', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Melancholic', 'Calm'})","frozenset({'Happy', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Energetic', 'Calm'})","frozenset({'Happy', 'Melancholic'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Melancholic'})","frozenset({'Energetic', 'Calm'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Happy', 'Energetic'})","frozenset({'Melancholic', 'Calm'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-"frozenset({'Melancholic', 'Energetic'})","frozenset({'Happy', 'Calm'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Calm'}),"frozenset({'Happy', 'Melancholic', 'Energetic'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Happy'}),"frozenset({'Energetic', 'Melancholic', 'Calm'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Melancholic'}),"frozenset({'Energetic', 'Happy', 'Calm'})",1.0,0.9433962264150944,0.9433962264150944,0.9433962264150944,1.0,1.0,0.0,1.0,0.0,0.9433962264150944,0.0,0.9716981132075472
-frozenset({'Energetic'}),"frozenset({'Happy', 'Melancholic', 'Calm'})",0.9433962264150944,1.0,0.9433962264150944,1.0,1.0,1.0,0.0,inf,0.0,0.9433962264150944,0.0,0.9716981132075472
+frozenset({'Melancholic'}),"frozenset({'Happy', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Happy'})",frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Melancholic'})",frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Happy', 'Melancholic'})",frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Energetic'}),"frozenset({'Happy', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Happy'}),"frozenset({'Energetic', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Melancholic'}),"frozenset({'Energetic', 'Happy'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Calm', 'Happy'})",frozenset({'Melancholic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Calm', 'Melancholic'})",frozenset({'Happy'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Happy', 'Melancholic'})",frozenset({'Calm'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Happy', 'Calm', 'Melancholic'})",frozenset({'Energetic'}),1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Calm'})","frozenset({'Happy', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Happy'})","frozenset({'Melancholic', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Energetic', 'Melancholic'})","frozenset({'Happy', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Happy', 'Calm'})","frozenset({'Energetic', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Melancholic', 'Calm'})","frozenset({'Energetic', 'Happy'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+"frozenset({'Happy', 'Melancholic'})","frozenset({'Energetic', 'Calm'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Energetic'}),"frozenset({'Happy', 'Calm', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Calm'}),"frozenset({'Energetic', 'Happy', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Happy'}),"frozenset({'Energetic', 'Calm', 'Melancholic'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
+frozenset({'Melancholic'}),"frozenset({'Energetic', 'Calm', 'Happy'})",1.0,1.0,1.0,1.0,1.0,1.0,0.0,inf,0.0,1.0,0.0,1.0
